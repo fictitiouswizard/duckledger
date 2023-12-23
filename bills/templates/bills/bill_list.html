@@ -2,14 +2,14 @@
 
 
 {% block content %}
-    <ul class="bill-list">
-        {% for bill in bills %}
-            <li class="bill-list__list-item">{{ bill.name }} - {{ bill.amount_due }}</li>
-        {% endfor %}
-    </ul>
     <ul>
         {% for transaction in transactions %}
             <li>{{ transaction.memo }} - {{ transaction.amount }}</li>
+        {% endfor %}
+    </ul>
+    <ul class="bill-list">
+        {% for bill in bills %}
+            <li class="bill-list__list-item">{{ bill.name }} - {{ bill.amount_due }}</li>
         {% endfor %}
     </ul>
 {% endblock %}

@@ -1,9 +1,13 @@
+html {
+    margin: 0;
+}
+
+.content-area {
+    display: flex;
+}
+
 .bill-list {
-    background-color: aquamarine;
-
-
 }
 
 .bill-list__list-item {
-    background-color: blue;
 }
