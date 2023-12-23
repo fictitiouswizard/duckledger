@@ -2,11 +2,58 @@
 
 
 {% block content %}
-    <ul>
-        {% for transaction in transactions %}
-            <li>{{ transaction.memo }} - {{ transaction.amount }}</li>
-        {% endfor %}
-    </ul>
+    <div>
+        <table>
+            <thead>
+                <td>Date</td>
+                <td>Type</td>
+                <td>Memo</td>
+                <td>Amount</td>
+                <td>Balance</td>
+                <td></td>
+            </thead>
+            <tbody>
+            <form
+                    hx-post="{% url 'transaction.create' %}"
+            >
+                {% csrf_token %}
+                <tr>
+                    <td>
+                        <input type="date" name="transaction_date" id="transaction_date">
+                    </td>
+                    <td>
+                        <select name="transaction_type" id="transaction_type">
+                            <option value="ACH">ACH</option>
+                            <option value="DBT">Debit Card</option>
+                            <option value="CHK">Check</option>
+                            <option value="CC">Credit Card</option>
+                            <option value="DPST">Deposit</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" name="transaction_date" id="transaction_date">
+                    </td>
+                    <td>
+                        <input type="number" name="transaction_date" id="transaction_date">
+                    </td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <button>Add</button>
+                    </td>
+                </tr>
+            </form>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.transaction_date }}</td>
+                    <td>{{ transaction.transaction_type }}</td>
+                    <td>{{ transaction.memo }}</td>
+                    <td>{{ transaction.amount }}</td>
+                    <td>{{ transaction.running_balance }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
     <ul class="bill-list">
         {% for bill in bills %}
             <li class="bill-list__list-item">{{ bill.name }} - {{ bill.amount_due }}</li>

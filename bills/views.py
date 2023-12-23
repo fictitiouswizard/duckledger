@@ -16,3 +16,16 @@ def list_bills(request):
       }
    )
 
+
+def create_transaction(request):
+   # print(request.POST["transaction_date"])
+   transaction = Transaction(**request.POST)
+   transactions = Transaction.objects.all()
+   return render(
+      request,
+      'bills/partials/transaction_list.html',
+      {
+         "transactions": transactions
+      }
+   )
+
